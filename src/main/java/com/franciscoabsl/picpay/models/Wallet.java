@@ -1,4 +1,4 @@
-package com.franciscoabsl.picpay.model;
+package com.franciscoabsl.picpay.models;
 
 import jakarta.persistence.*;
 

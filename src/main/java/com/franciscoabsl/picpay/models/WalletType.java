@@ -1,4 +1,4 @@
-package com.franciscoabsl.picpay.model;
+package com.franciscoabsl.picpay.models;
 
 import jakarta.persistence.*;
 
@@ -15,6 +15,11 @@ public class WalletType {
     public WalletType() {
     }
 
+    public WalletType(Long id, String description) {
+        this.id = id;
+        this.description = description;
+    }
+
     public Long getId() {
         return id;
     }
@@ -29,5 +34,22 @@ public class WalletType {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public enum Enum {
+        USER(1L, "user"),
+        MERCHANT(2L, "merchant");
+
+        Enum(Long id, String description) {
+            this.id = id;
+            this.description = description;
+        }
+
+        private Long id;
+        private String description;
+
+        public WalletType get() {
+            return new WalletType(id, description);
+        }
     }
 }
