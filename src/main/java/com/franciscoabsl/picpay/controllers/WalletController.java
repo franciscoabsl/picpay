@@ -3,6 +3,7 @@ package com.franciscoabsl.picpay.controllers;
 import com.franciscoabsl.picpay.dtos.CreateWalletDto;
 import com.franciscoabsl.picpay.models.Wallet;
 import com.franciscoabsl.picpay.services.WalletService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +19,7 @@ public class WalletController {
     }
 
     @PostMapping
-    public ResponseEntity<Wallet> createWallet(@RequestBody CreateWalletDto walletDto) {
+    public ResponseEntity<Wallet> createWallet(@RequestBody @Valid CreateWalletDto walletDto) {
 
         return ResponseEntity.status(HttpStatus.CREATED).body(walletService.save(walletDto));
     }
