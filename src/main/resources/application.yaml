@@ -25,3 +25,9 @@ logging:
       hibernate: INFO
       springframework:
         web: DEBUG
+
+client:
+  authorization-service:
+    url: "https://util.devi.tools/api/v2/authorize"
+  notification-service:
+    url: "https://util.devi.tools/api/v1/notify"
