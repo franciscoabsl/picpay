@@ -1,6 +1,7 @@
 package com.franciscoabsl.picpay.services;
 
 import com.franciscoabsl.picpay.dtos.CreateWalletDto;
+import com.franciscoabsl.picpay.exceptions.WalletDataAlreadyExistsException;
 import com.franciscoabsl.picpay.models.Wallet;
 import com.franciscoabsl.picpay.repositories.WalletRepository;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,11 @@ public class WalletService {
     }
 
     public Wallet save(CreateWalletDto walletDto) {
+        var walletDb =  walletRepository.findByCpfCnpjOrEmail(walletDto.cpfCnpj(), walletDto.email());
+
+        if (walletDb.isPresent()) {
+            throw new WalletDataAlreadyExistsException("CpfCnpj or Email already exists");
+        }
         return walletRepository.save(walletDto.toWallet());
     }
 }
