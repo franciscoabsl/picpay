@@ -6,6 +6,8 @@ import com.franciscoabsl.picpay.models.Wallet;
 import com.franciscoabsl.picpay.repositories.WalletRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class WalletService {
 
@@ -22,5 +24,9 @@ public class WalletService {
             throw new WalletDataAlreadyExistsException("CpfCnpj or Email already exists");
         }
         return walletRepository.save(walletDto.toWallet());
+    }
+
+    public Optional<Wallet> findById(Long payer) {
+        return walletRepository.findById(payer);
     }
 }
